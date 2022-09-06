@@ -20,7 +20,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     /// Override setText so number will be automatically formatted when setting text by code
     open override var text: String? {
         set {
-            if isPartialFormatterEnabled, let newValue = newValue {
+            if isPartialFormatterEnabled, let newValue = newValue, let countryCode = self.partialFormatter.currentMetadata?.countryCode, newValue != "+\(countryCode) " {
                 let formattedNumber = partialFormatter.formatPartial(newValue)
                 super.text = formattedNumber
             } else {

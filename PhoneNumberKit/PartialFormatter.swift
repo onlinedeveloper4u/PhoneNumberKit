@@ -132,13 +132,9 @@ public final class PartialFormatter {
         if nationalNumber.count > 0 {
             finalNumber.append(nationalNumber)
         }
-//        if finalNumber.last == PhoneNumberConstants.separatorBeforeNationalNumber.first {
-//            if let countryCode = currentMetadata?.countryCode {
-//                if finalNumber != "+\(countryCode) " {
-//                    finalNumber = String(finalNumber[..<finalNumber.index(before: finalNumber.endIndex)])
-//                }
-//            }
-//        }
+        if finalNumber.last == PhoneNumberConstants.separatorBeforeNationalNumber.first {
+            finalNumber = String(finalNumber[..<finalNumber.index(before: finalNumber.endIndex)])
+        }
         finalNumber.append(split.pausesOrWaits)
         return finalNumber
     }
