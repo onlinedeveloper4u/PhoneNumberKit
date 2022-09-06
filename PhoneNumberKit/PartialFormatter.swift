@@ -53,7 +53,7 @@ public final class PartialFormatter {
     var defaultMetadata: MetadataTerritory?
     var currentMetadata: MetadataTerritory?
     var prefixBeforeNationalNumber = String()
-    var shouldAddSpaceAfterNationalPrefix = false
+    var shouldAddSpaceAfterNationalPrefix = true
     var withPrefix = true
 
     // MARK: Status
@@ -144,7 +144,7 @@ public final class PartialFormatter {
     internal func resetVariables() {
         self.currentMetadata = self.defaultMetadata
         self.prefixBeforeNationalNumber = String()
-        self.shouldAddSpaceAfterNationalPrefix = false
+        self.shouldAddSpaceAfterNationalPrefix = true
     }
 
     // MARK: Formatting Tests
