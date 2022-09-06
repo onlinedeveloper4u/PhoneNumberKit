@@ -53,7 +53,7 @@ public final class PartialFormatter {
     var defaultMetadata: MetadataTerritory?
     var currentMetadata: MetadataTerritory?
     var prefixBeforeNationalNumber = String()
-    var shouldAddSpaceAfterNationalPrefix = true
+    var shouldAddSpaceAfterNationalPrefix = false
     var withPrefix = true
 
     // MARK: Status
@@ -134,6 +134,9 @@ public final class PartialFormatter {
         }
         if finalNumber.last == PhoneNumberConstants.separatorBeforeNationalNumber.first {
             finalNumber = String(finalNumber[..<finalNumber.index(before: finalNumber.endIndex)])
+            if let countryCode = currentMetadata?.countryCode, finalNumber == "+\(countryCode)" {
+                finalNumber.append(" ")
+            }
         }
         finalNumber.append(split.pausesOrWaits)
         return finalNumber
@@ -144,7 +147,7 @@ public final class PartialFormatter {
     internal func resetVariables() {
         self.currentMetadata = self.defaultMetadata
         self.prefixBeforeNationalNumber = String()
-        self.shouldAddSpaceAfterNationalPrefix = true
+        self.shouldAddSpaceAfterNationalPrefix = false
     }
 
     // MARK: Formatting Tests
